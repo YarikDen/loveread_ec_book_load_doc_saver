@@ -21,6 +21,7 @@ net_is_work = True
 
 for num in range(1,int(nums)+1):
         page_url =main_url + "&p=" + str(num)
+        #Catch exception if haven`t network connection
         try: 
                 resp = req.get(page_url)
         except:
@@ -80,7 +81,7 @@ for num in range(1,int(nums)+1):
                 start_str = end_str
                 is_par = True
                 
-
+        #Load paragraphs and headers to docx-file
         for a in map_text:
                 if(a[0] == True):
                         (doc.add_paragraph(a[1])).style = "Normal"
@@ -88,6 +89,7 @@ for num in range(1,int(nums)+1):
                         (doc.add_paragraph(a[1])).style = "Heading 1"
 
 if (net_is_work == True):
+        #Save doc
         doc.save(name_book+".docx")
         print("Doc was successfully saved")
 
